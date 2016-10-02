@@ -17,7 +17,8 @@ const common = {
   },
   output: {
     path: PATHS.build,
-    filename: '[name].js'
+    filename: '[name].[hash].js',
+    chunkFilename: '[hash].js'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -36,6 +37,7 @@ switch(process.env.npm_lifecycle_event) {
       {
         devtool: 'source-map'
       }, 
+      parts.clean(PATHS.build),
       parts.setFreeVariable(
         'process.env.NODE_ENV',
         'production'
@@ -45,7 +47,7 @@ switch(process.env.npm_lifecycle_event) {
         entries: ['react']
       }),
       parts.minify(),
-      parts.setupCSS(PATHS.app)
+      parts.extractCSS(PATHS.app)
     );
     break;
   default:

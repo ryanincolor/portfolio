@@ -1,4 +1,19 @@
 const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+
+
+
+exports.clean = function(path) {
+  return {
+    plugins: [
+      new CleanWebpackPlugin([path], {
+        root: process.cwd()
+      })
+    ]
+  };
+}
 
 exports.devServer = function(options) {
   return {
@@ -28,7 +43,26 @@ exports.setupCSS = function(paths) {
           include: paths
         }
       ]
-    }
+    },
+  };
+}
+
+exports.extractCSS = function(paths) {
+  return {
+    module: {
+      loaders: [
+        // Extract CSS during build
+        {
+          test: /\.css$/,
+          loader: ExtractTextPlugin.extract('style', 'css'),
+          include: paths
+        }
+      ]
+    },
+    plugins: [
+      // Output extracted CSS to a file
+      new ExtractTextPlugin('[name].[hash].css')
+    ]
   };
 }
 
@@ -66,7 +100,7 @@ exports.extractBundle = function(options) {
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
         names: [options.name, 'manifest']
-      })
+      }),
     ]
   };
 }
