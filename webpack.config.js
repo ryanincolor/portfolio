@@ -13,7 +13,8 @@ const PATHS = {
 
 const common = {
   entry: {
-    app: PATHS.app
+    app: PATHS.app,
+    vendor: ['react']
   },
   output: {
     path: PATHS.build,
@@ -36,8 +37,14 @@ switch(process.env.npm_lifecycle_event) {
       {
         devtool: 'source-map'
       }, 
+      parts.setFreeVariable(
+        'process.env.NODE_ENV',
+        'production'
+      ),
+      parts.minify(),
       parts.setupCSS(PATHS.app)
     );
+    break;
   default:
     config = merge(
       common, 
