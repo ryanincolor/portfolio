@@ -8,11 +8,13 @@ const parts = require('./libs/parts');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
+  style: path.join(__dirname, 'app' , 'styles.css'),
   build: path.join(__dirname, 'build')
 };
 
 const common = {
   entry: {
+    style: PATHS.style,
     app: PATHS.app
   },
   output: {
@@ -47,7 +49,7 @@ switch(process.env.npm_lifecycle_event) {
         entries: ['react']
       }),
       parts.minify(),
-      parts.extractCSS(PATHS.app)
+      parts.extractCSS(PATHS.style)
     );
     break;
   default:
@@ -57,7 +59,7 @@ switch(process.env.npm_lifecycle_event) {
       { 
         devtool: 'eval-source-map'
       },
-      parts.setupCSS(PATHS.app), 
+      parts.setupCSS(PATHS.style), 
       parts.devServer({
         host: process.env.HOST,
         port: 8000
@@ -65,4 +67,6 @@ switch(process.env.npm_lifecycle_event) {
     );
 }
 
-module.exports = validate(config);
+module.exports = validate(config, {
+  quiet: true
+});
