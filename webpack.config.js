@@ -59,6 +59,7 @@ switch(process.env.npm_lifecycle_event) {
       { 
         devtool: 'eval-source-map'
       },
+      parts.babel(), 
       parts.setupCSS(PATHS.style), 
       parts.devServer({
         host: process.env.HOST,
