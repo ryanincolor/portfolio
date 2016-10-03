@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-
-import Homie from './components/homie/';
+import Layout from './components/layout/';
 
 
 ReactDOM.render(
-  <Homie />,
+  <Layout />,
   document.getElementById('root')
 );
