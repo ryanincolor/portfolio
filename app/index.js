@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Router from './router'
 import Layout from './components/layout/';
 
 
 ReactDOM.render(
-  <Layout />,
+  Router,
   document.getElementById('root')
 );

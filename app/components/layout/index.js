@@ -5,10 +5,11 @@ import styles from './styles.css';
 class Layout extends React.Component {
   render () {
     return (
-      <Homie />
+      <div className="app">
+        {this.props.children}
+      </div>
     );
   }
 }
 
 export default Layout;
-
