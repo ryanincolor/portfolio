@@ -11,13 +11,11 @@ process.env.BABEL_ENV = TARGET;
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  style: path.join(__dirname, 'app' , 'styles.css'),
   build: path.join(__dirname, 'build')
 };
 
 const common = {
   entry: {
-    style: PATHS.style,
     app: PATHS.app,
     vendor: Object.keys(pkg.dependencies)
   },
@@ -69,7 +67,7 @@ switch(process.env.npm_lifecycle_event) {
         entries: ['react']
       }),
       parts.minify(),
-      parts.extractCSS(PATHS.style)
+      parts.extractCSS(PATHS.app)
     );
     break;
   default:
@@ -79,7 +77,7 @@ switch(process.env.npm_lifecycle_event) {
       { 
         devtool: 'eval-source-map'
       },
-      parts.setupCSS(PATHS.style), 
+      parts.setupCSS(PATHS.app), 
       parts.devServer({
         host: process.env.HOST,
         port: 8000
