@@ -1,5 +1,11 @@
-import react from 'react';
-import component from './components/component';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-document.body.appendChild(component());
 
+import Homie from './components/homie/';
+
+
+ReactDOM.render(
+  <Homie />,
+  document.getElementById('root')
+);

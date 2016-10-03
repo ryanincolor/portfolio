@@ -2,35 +2,6 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-
-
-exports.babel = function() {
-  return {
-    module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel', // 'babel-loader' is also a legal name to reference 
-        query: {
-          presets: ['es2015']
-        }
-      }
-    ]
-    }
-  }
-}
-
-exports.clean = function(path) {
-  return {
-    plugins: [
-      new CleanWebpackPlugin([path], {
-        root: process.cwd()
-      })
-    ]
-  };
-}
-
 exports.devServer = function(options) {
   return {
     devServer: {
@@ -44,6 +15,16 @@ exports.devServer = function(options) {
     plugins: [
       new webpack.HotModuleReplacementPlugin({
         multiStep: true
+      })
+    ]
+  };
+}
+
+exports.clean = function(path) {
+  return {
+    plugins: [
+      new CleanWebpackPlugin([path], {
+        root: process.cwd()
       })
     ]
   };
@@ -94,7 +75,6 @@ exports.minify = function() {
   };
 }
 
-
 exports.setFreeVariable = function(key, value) {
   const env = {};
   env[key] = JSON.stringify(value);
@@ -103,9 +83,8 @@ exports.setFreeVariable = function(key, value) {
     plugins: [
       new webpack.DefinePlugin(env)
     ]
-  };
+ };
 }
-
 
 exports.extractBundle = function(options) {
   const entry = {};

@@ -4,6 +4,9 @@ const validate = require('webpack-validator');
 const merge = require('webpack-merge');
 const parts = require('./libs/parts');
 
+const TARGET = process.env.npm_lifecycle_event;
+const pkg = require('./package.json');
+process.env.BABEL_ENV = TARGET;
 
 
 const PATHS = {
@@ -15,18 +18,35 @@ const PATHS = {
 const common = {
   entry: {
     style: PATHS.style,
-    app: PATHS.app
+    app: PATHS.app,
+    vendor: Object.keys(pkg.dependencies)
   },
   output: {
     path: PATHS.build,
     filename: '[name].[hash].js',
     chunkFilename: '[hash].js'
   },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Portfolio of Ryan Pittman'
+      template: require('html-webpack-template'),
+      title: 'Portfolio of Ryan Pittman',
+      appMountId: 'root',
+      inject: false
     })
   ],
+  module: {
+    loaders: [
+      {
+        test: [/\.js$/, /\.jsx$/],
+        exclude: /(node_modules|bower_components)/,
+        loaders: ["babel-loader"],
+        include: PATHS.app
+      }
+    ]
+  }
 };
 
 var config; 
@@ -59,7 +79,6 @@ switch(process.env.npm_lifecycle_event) {
       { 
         devtool: 'eval-source-map'
       },
-      parts.babel(), 
       parts.setupCSS(PATHS.style), 
       parts.devServer({
         host: process.env.HOST,
