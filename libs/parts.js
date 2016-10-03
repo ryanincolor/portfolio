@@ -34,10 +34,17 @@ exports.setupCSS = function(paths) {
   return {
     module: {
       loaders: [
+       {
+         test: /\.css$/,
+         loader: 'style-loader'
+        }, 
         {
           test: /\.css$/,
-          loaders: ['style', 'css'],
-          include: paths
+          loader: 'css-loader',
+          query: {
+              modules: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+          }        
         }
       ]
     },
@@ -51,7 +58,7 @@ exports.extractCSS = function(paths) {
         // Extract CSS during build
         {
           test: /\.css$/,
-          loader: ExtractTextPlugin.extract('style', 'css'),
+          loader: ExtractTextPlugin.extract('css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'),
           include: paths
         }
       ]
