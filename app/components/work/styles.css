@@ -3,13 +3,15 @@
   flex-wrap: wrap;
   flex-direction: row;
   margin: 0;
-  padding: 64px;
+  padding:0;
   list-style: none;
+  width: 100%;
 
 }
 
 .shotlist li {
-  width: 33%;
+  width: 30%;
+  padding: 0 1.5% 3%;
 }
 
 .shotlist img {
@@ -20,7 +22,7 @@
 
 @media(max-width: 1048px) {
   .shotlist li {
-    width: 50%;
+    width: 47%;
   }
 }
 
@@ -31,6 +33,7 @@
 
   .shotlist li {
     width: 100%;
+    padding: 0px;
     margin-bottom: 24px;
   }
 }

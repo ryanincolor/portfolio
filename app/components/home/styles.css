@@ -5,6 +5,32 @@
   margin: 0 auto;
 }
 
-.container {
+.hero {
+  box-sizing: border-box;
   width: 1200px;
+  padding: 128px 1.5%;
+}
+
+.hero h1 {
+  font-size: 88px;
+  margin-bottom: 0px;
+}
+
+.hero p {
+  font-size: 24px;
+  width: 64%;
+  line-height: 32px;
+}
+
+@media(max-width: 1048px) {
+  .hero p {
+    width: 100%;
+  }
+}
+
+@media(max-width: 768px) {
+  .hero {
+    padding: 24px;
+  }
+
 }

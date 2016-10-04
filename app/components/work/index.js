@@ -13,7 +13,7 @@ class Work extends React.Component {
   
     var shotList = this.props.shots.map(function(shot){
       return(
-        <li key={shot.id}><img src={shot.images.hidpi} /></li>
+        <li key={shot.id}><a href={shot.html_url} target="_blank"><img src={shot.images.hidpi} /></a></li>
       )
     });
 
