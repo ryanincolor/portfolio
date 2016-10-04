@@ -5,39 +5,6 @@
   margin: 0 auto;
 }
 
-.shotlist {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  margin: 0;
-  padding: 64px;
-  list-style: none;
-
-}
-
-.shotlist li {
-  width: 33%;
-}
-
-.shotlist img {
-  display: block;
-  width: 800px;
-  max-width: 100%;
-}
-
-@media(max-width: 1048px) {
-  .shotlist li {
-    width: 50%;
-  }
-}
-
-@media(max-width: 768px) {
-  .shotlist {
-    padding: 24px;
-  }
-
-  .shotlist li {
-    width: 100%;
-    margin-bottom: 24px;
-  }
+.container {
+  width: 1200px;
 }

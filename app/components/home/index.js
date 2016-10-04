@@ -4,9 +4,10 @@ import styles from './styles.css';
 window.jQuery = require('jquery');
 var jribbble = require('jribbble');
 
-
+import Work from '../work/';
 
 class Home extends React.Component {
+  
   constructor(props) {
     super(props); 
     this.state = {
@@ -24,26 +25,13 @@ class Home extends React.Component {
   }
 
   render() {
-    if( !this.state.shots ) {
-      return (
-        <div className={styles.home}>
-          <ul className={styles.shotlist}>
-            <h3>Loading...</h3>
-          </ul>
-        </div>
-      );
-    } 
-    
-    var shotList = this.state.shots.map(function(shot){
-      return(
-        <li key={shot.id}><img src={shot.images.hidpi} /></li>
-      )
-    });
-    return (  
+    return (     
       <div className={styles.home}>
-        <ul className={styles.shotlist}>
-          {shotList}
-        </ul>
+        <section className={styles.container}>
+          <h1>Ryan Pittman</h1>
+          <p>Product designer hailing from Sweden</p>
+        </section>
+        <Work shots={this.state.shots} />
       </div>
     )
   }

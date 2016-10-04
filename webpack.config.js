@@ -17,7 +17,6 @@ const PATHS = {
 const common = {
   entry: {
     app: PATHS.app,
-    vendor: Object.keys(pkg.dependencies)
   },
   output: {
     path: PATHS.build,
@@ -67,7 +66,7 @@ switch(process.env.npm_lifecycle_event) {
       ),
       parts.extractBundle({
         name: 'vendor',
-        entries: ['react']
+        entries: ['react', 'jribbble', 'jquery']
       }),
       parts.minify(),
       parts.extractCSS(PATHS.app)
