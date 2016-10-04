@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './styles.css';
 
-import data from 'json!../../dribbble.json';
+import data from '../../dribbble.json';
 
 class Home extends React.Component {
   constructor(props) {
