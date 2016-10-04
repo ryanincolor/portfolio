@@ -42,6 +42,9 @@ const common = {
         exclude: /(node_modules|bower_components)/,
         loaders: ["babel-loader"],
         include: PATHS.app
+      },
+      { test: /\.json$/, 
+        loader: 'json' 
       }
     ]
   }
