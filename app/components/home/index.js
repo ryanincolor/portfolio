@@ -16,7 +16,7 @@ class Home extends React.Component {
 
   componentDidMount() {
 
-    axios.get('https://api.dribbble.com/v1/users/ryanincolor/shots?access_token=7875d1a58ad42ec2f9765322b6fe9557eea26f7694a7a0621a7980d9ac90f7ef')
+    axios.get('https://api.dribbble.com/v1/users/ryanincolor/shots?page=1&per_page=30&access_token=7875d1a58ad42ec2f9765322b6fe9557eea26f7694a7a0621a7980d9ac90f7ef')
     .then(function (response) {
       console.log(response.data);
       this.setState({
