@@ -1,7 +1,6 @@
 import React from "react";
 import styles from './styles.css';
-window.jQuery = require('jquery');
-var jribbble = require('jribbble');
+import axios from 'axios';
 
 import Work from '../work/';
 
@@ -16,18 +15,20 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    jQuery.jribbble.setToken('7875d1a58ad42ec2f9765322b6fe9557eea26f7694a7a0621a7980d9ac90f7ef');
-    jQuery.jribbble.users('ryanincolor').shots().then(function(res) {
+
+    axios.get('https://api.dribbble.com/v1/users/ryanincolor/shots?access_token=7875d1a58ad42ec2f9765322b6fe9557eea26f7694a7a0621a7980d9ac90f7ef')
+    .then(function (response) {
+      console.log(response.data);
       this.setState({
-        shots: res
+        shots: response.data
       });
-    }.bind(this));
-
-
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 
   render() {
-      console.log(this.state.shots);
     return (     
       <div className={styles.home}>
         <section  className={styles.hero}>

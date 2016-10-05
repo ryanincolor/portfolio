@@ -12,11 +12,12 @@ process.env.BABEL_ENV = TARGET;
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build')
+
 };
 
 const common = {
   entry: {
-    app: PATHS.app,
+    app: PATHS.app
   },
   output: {
     path: PATHS.build,
@@ -32,7 +33,7 @@ const common = {
       title: 'Portfolio of Ryan Pittman',
       appMountId: 'root',
       inject: false
-    })
+    }),
   ],
   module: {
     loaders: [
@@ -66,7 +67,7 @@ switch(process.env.npm_lifecycle_event) {
       ),
       parts.extractBundle({
         name: 'vendor',
-        entries: ['react', 'jribbble', 'jquery']
+        entries: ['react']
       }),
       parts.minify(),
       parts.extractCSS(PATHS.app)
